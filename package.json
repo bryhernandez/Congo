@@ -1,0 +1,22 @@
+{
+  "name": "congo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "alert": "^5.0.10",
+    "bcrypt": "^5.0.1",
+    "ejs": "^3.1.6",
+    "express": "^4.17.1",
+    "express-session": "^1.17.2",
+    "functions": "^1.0.9",
+    "mysql": "^2.18.1",
+    "node-fetch": "^2.6.6",
+    "popups": "^1.1.3"
+  }
+}

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <link href="/css/styles.css" rel="stylesheet" type="text/css" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <title>Admin Home</title>
+</head>
+<body id="back">
+  <%- include ("partials/logo.ejs") %>
+<header> 
+  <h1>Welcome Back Admin!</h1> 
+</header> 
+  <section>
+    <div id="adminBtn" class="card text-center border-dark" style="max-width: 450px;">  
+      <div class="card-body">
+      <a href="/users" id="adfon"class="btn btn-warning adminBtn">Users</a>
+      <br><br>  
+        <a href="/items" id="adfon"class="btn btn-warning adminBtn">Items</a>   
+      <br><br>
+        <a href="/logout" id="adfon"class="btn btn-warning adminBtn">Logout</a>
+      </div>    
+    </div>    
+  </section>
+    
+
+</body>
+</html>

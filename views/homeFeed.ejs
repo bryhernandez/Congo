@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="/css/styles.css" rel="stylesheet" type="text/css" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <title>Congo</title>
+</head>
+<body id = "back">
+  <nav>
+    <%- include ("partials/logo.ejs") %>
+  </nav>  
+
+  <h1 id="welcomeMsg"> Welcome to Congo! </h1> 
+  <header> 
+    <%- include ("partials/feedicons.ejs") %>
+  </header>
+
+  <section>
+    <% for(var i = 0; i < items.length; i++) {%>
+        <div class="card" id="items">
+          <div class="card-body">
+            <section>
+              <a class="itemInfo <%= user[0].userId %>" href="#" id="<%= items[i].itemId %>" data-toggle="modal" data-target="#myModal"><%= items[i].title %></a>
+              <strong>$<%= items[i].price.toFixed(2) %></strong> <br>
+              <figcaption> <%= items[i].description %> <br> </figcaption>
+              <figure>
+                <img src="<%= items[i].image%>" width=200>
+              </figure>
+            </section>
+          </div>
+        </div>
+        <br><br>
+    <% } %>
+  </section>
+
+<!-- Item Info Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Item Info Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title itemTitle"></h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+          <div class="modal-body">
+
+              <section>
+                <span class="itemTitle"></span>
+                <label id="itemPrice"></label>
+                <figcaption> <div id="itemDesc"></div> </figcaption>
+                <figure> <div id="itemImg"></div> </figure>
+              </section>
+              
+          </div>
+          <div class="modal-footer" id="addtocartbtn">
+            <!---<a href="/addToCart?itemId=" data-toggle="modal" data-target="#cartModal"><button class="btn btn-default" data-dismiss="modal" >Add to Cart</button></a> --->
+          </div>
+      </div>
+      
+    </div>
+  </div>
+
+<!-- Cart Modal -->
+  <div class="modal fade" id="cartModal" role="dialog">
+    <div class="modal-dialog">
+      
+      <!-- Cart Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title" id="cartItemTitle"><strong>Cart</strong></h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+
+          <% if(cart.length != 0) { %>
+          <!-- Load cart for current user -->
+            <% var sum = 0; %>
+            <% for(var i = 0; i < cart.length; i++) {%>
+              <% for(var j = 0; j < items.length; j++) {%>
+                <% if(cart[i].itemId == items[j].itemId) {%>
+
+                  <div class="card" id="items">
+                    <div class="card-body">
+                        <section>
+                          <figcaption> <strong> <%= items[j].title %> </strong><br> </figcaption>
+                          <figure> <img src="<%= items[j].image %>" width=100> </figure>
+                          $<%= items[j].price.toFixed(2) %>
+                          <% sum += items[j].price %> <br>
+                          <a href="/cartDelete?itemId=<%= items[j].itemId %>&userId=<%= user[0].userId %>" id="cartDeleteBtn">Delete</a>
+                        </section>
+                    </div>
+                  </div>
+                  <br><br>
+
+                <% } %>
+              <% } %>
+            <% } %>
+          <% } else { %>
+              <h4>Nothing in Cart</h4>
+          <% } %>
+
+        </div>
+        <div class="modal-footer justify-content-between" id = "checkoutBtnSection">
+          <section>
+            <% if(cart.length != 0) { %>
+              <div id="total"><label><strong>Total in Cart:</strong> </label> $<%= sum.toFixed(2) %> </div><br>
+              <!-- Pass in current user to checkout route -->
+              <div id="checkoutBtn"><a href="/checkout?userId=<%= user[0].userId %>"> Go To Checkout </a></div>
+            <% } else {%>
+              <button type="button" data-dismiss="modal">Close</button>
+            <% } %>
+          </section>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  
+  <script src="js/functions.js"></script>
+</body>
+</html>

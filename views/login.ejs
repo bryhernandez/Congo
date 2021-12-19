@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="/css/styles.css" rel="stylesheet" type="text/css" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+  
+  <title>Congo</title>
+</head>
+<body id="back">
+  <%- include ("partials/logo.ejs") %>
+  
+  <h1> Welcome To Congo! </h1>
+
+<section>
+  <div class="card">
+    <div class="card-body">
+
+      <h2 style="text-align: center"> Login </h2>
+      <form action="/login" method="POST" autocomplete="off">
+
+        <label>Email:</label> <input type="text" class="form-control" placeholder="Email" name="username"> <br>
+        <label>Password:</label> <input type="password" class="form-control" placeholder="Password" name="password"><br>
+         <button class="btn btn-warning" style="text-align: center"> Login </button> 
+        
+      </form>
+      
+      <br><br>
+
+      <form action="/register">
+            <h3> <em> Don't have a Congo account? <em></h3>
+            <button class="btn btn-warning">Register for Congo</button>
+      </form>
+
+    </div>
+  </div>
+</section>
+
+  <script src="js/functions.js"></script>
+</body>
+</html>

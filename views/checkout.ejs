@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Congo - Checkout</title>
+  <link href="/css/styles.css" rel="stylesheet" type="text/css" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body id="back">
+<%- include ("partials/logo.ejs") %>
+<header>
+  <h1 id="welcomeMsg">Checkout</h1>  
+</header>
+  <!-- Algorithm explained:
+    -Compare the items in the cart to the items in the whole DB.
+    -If we find an item from the DB is in the user's cart, make a card for it
+  -->
+  <section>
+    <div class="card">
+      <div class="card-body">
+        <% var sum = 0; %>
+        <% for(i in cartItems) {%>
+          <% for(k in dbItems) {%>
+            <% if(cartItems[i].itemId == dbItems[k].itemId) {%>
+              <div class="card">
+                <div class="card-body">
+
+                  <section>
+                    <a href="#" id="<%= dbItems[k].itemId %>"><%= dbItems[k].title %></a>
+                    <strong>$<%= dbItems[k].price %></strong> <br>
+                    <figcaption> <%= dbItems[k].description %> <br> </figcaption>
+                    <figure> <img src="<%= dbItems[k].image%>" width=200> </figure>
+                    <% sum += dbItems[k].price %>
+                  </section>
+                  
+                </div>
+              </div>
+            <% } %>
+          <% } %>
+          <br><br>
+        <% } %>
+          <center>
+            <div id="total"><label>Total in Cart: <u id = "totalSum"> $<%= sum.toFixed(2) %> </u> </label> </div><br>
+          </center>
+
+      </div>
+    </div>
+  </section>
+  <!-- Pass userId to the POST method to delete the user's cart after checkout -->
+<div class="centt">
+  <a href="/checkoutSuccess?userId=<%= cartItems[0].userId %>" class="btn btn-warning" id = "placeorder"> Place Order </a>
+</div>
+</body>
+</html>
